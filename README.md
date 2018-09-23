@@ -1,6 +1,7 @@
-# Homebridge HTTP Window Covering
+# Homebridge HTTP Window Blinds
 
-A very simple [Homebridge](https://github.com/nfarina/homebridge) plugin for controlling window covering over HTTP. This plugin is statefull, it keeps the status of the window covering locally. No server side checking will be done to get states and positions from the window covering. Only setters will use HTTP requests.
+This is based on an Archived module by @jeffreylanters
+A simple [Homebridge](https://github.com/nfarina/homebridge) plugin for controlling window blinds over HTTP. This required a DIY device to move the windows blinds cord.
 
 ## IMPORTANT
 
@@ -22,8 +23,8 @@ A very simple [Homebridge](https://github.com/nfarina/homebridge) plugin for con
         {
             // Required
             "accessory": "HttpWindowCovering",
-            "name": "My Blinds",
-            "urlSetTargetPosition": "http://192.168.1.100/set/%VALUE%",
+            "name": "Office Blinds",
+            "urlSetTargetPosition": "http://192.168.1.100/blinds?open=%VALUE%",
 
             // Optional
             "outputValueMultiplier": 0.8
