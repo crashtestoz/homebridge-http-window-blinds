@@ -74,7 +74,7 @@ HttpWindowBlinds.prototype = {
          		}
 		});	
 	},
-	getTargetPosition: function(cllback){
+	getTargetPosition: function(callback){
 		this.log("getTargetPosition :", this.targetPosition);
 		callback(null, this.targetPosition);
 	},
