@@ -21,7 +21,7 @@ class HttpWindowCovering {
 		this.service = new Service.WindowCovering(this.name);
 		this.log = log;
 		this.name = config.name || "Window Covering";
-		this.model = config["model"] || "nodeMCU multi sensor DIY";
+		this.model = config["model"] || "nodeMCU based DIY motorised blinds";
 		this.manufacturer = config["manufacturer"] || "@crashtestoz";
 		this.outputValueMultiplier = config.outputValueMultiplier || 1;
 		this.urlSetTargetPosition = config.urlSetTargetPosition;
