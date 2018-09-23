@@ -81,6 +81,7 @@ HttpWindowBlinds.prototype = {
 	},
 	getTargetPosition: function(callback){
 		this.log("getTargetPosition :", this.targetPosition);
+		this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
 		callback(null, this.targetPosition);
 	},
 	setTargetPosition: function(value, callback) {
