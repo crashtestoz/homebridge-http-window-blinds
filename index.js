@@ -65,8 +65,9 @@ class HttpWindowCovering {
             			}
          		}
 			this.currentPosition = value;
-			this.service.setCharacteristic(Characteristic.CurrentPosition, this.currentPosition);
-			this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
+			this.log("getCurrentPosition is now: %s",this.currentPosition);
+			//this.service.setCharacteristic(Characteristic.CurrentPosition, this.currentPosition);
+			//this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
 			callback(null);
 		});	
 	}
