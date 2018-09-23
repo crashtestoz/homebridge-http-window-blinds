@@ -1,13 +1,17 @@
-const request = require('request');
-
 var Service;
 var Characteristic;
+
+const request = require('request');
+
+const DEF_MIN_OPEN = 0,
+      DEF_MAX_OPEN = 100,
+      DEF_TIMEOUT = 5000;
 
 module.exports = homebridge => {
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
 	homebridge.registerAccessory(
-		"homebridge-http-window-covering",
+		"homebridge-http-window-blinds",
 		"HttpWindowCovering",
 		HttpWindowCovering);
 };
