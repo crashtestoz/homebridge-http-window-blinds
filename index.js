@@ -22,6 +22,7 @@ class HttpWindowCovering {
 		this.log = log;
 		this.name = config.name || "Window Covering";
 		this.model = config["model"] || "nodeMCU multi sensor DIY";
+		this.manufacturer = config["manufacturer"] || "@crashtestoz";
 		this.outputValueMultiplier = config.outputValueMultiplier || 1;
 		this.urlSetTargetPosition = config.urlSetTargetPosition;
 		this.serial = config["serial"] || "20180923";
