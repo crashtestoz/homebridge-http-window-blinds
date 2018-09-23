@@ -12,8 +12,8 @@ module.exports = homebridge => {
 	Characteristic = homebridge.hap.Characteristic;
 	homebridge.registerAccessory(
 		"homebridge-http-window-blinds",
-		"HttpWindowCovering",
-		HttpWindowCovering);
+		"HttpWindowBlinds",
+		HttpWindowBlinds);
 };
 
 function HttpWindowBlinds(log, config) {
@@ -30,8 +30,7 @@ function HttpWindowBlinds(log, config) {
    	this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
 	this.currentPosition = 100;
 	this.targetPosition = 100;
-	this.positionState = Characteristic.PositionState.STOPPED;
-	
+	this.positionState = Characteristic.PositionState.STOPPED;	
 }	
 
 HttpWindowBlinds.prototype = {
@@ -74,7 +73,7 @@ HttpWindowBlinds.prototype = {
          		}
 		});	
 	},
-	getTargetPosition: functions(callback) {
+	getTargetPosition: function(cllback){
 		this.log("getTargetPosition :", this.targetPosition);
 		callback(null, this.targetPosition);
 	},
@@ -130,4 +129,3 @@ HttpWindowBlinds.prototype = {
 		return [informationService, this.service];
 	}
 }
-
