@@ -30,7 +30,7 @@ function HttpWindowBlinds(log, config) {
    	this.minOpen = config["min_open"] || DEF_MIN_OPEN;
    	this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
 	
-	this.currentPosition = 100;
+	this.currentPosition = 0;
 	this.targetPosition = 100;
 	
 	this.positionState = Characteristic.PositionState.STOPPED;
