@@ -26,7 +26,7 @@ class HttpWindowCovering {
 		this.outputValueMultiplier = config.outputValueMultiplier || 1;
 		this.urlSetTargetPosition = config.urlSetTargetPosition;
 		this.urlGetCurrentPosition = config.urlGetCurrentPosition;
-		this.serial = config["serial"] || "20180923";
+		this.serial = config["serial"] || "HWB02";
    		this.timeout = config["timeout"] || DEF_TIMEOUT;
    		this.minOpen = config["min_open"] || DEF_MIN_OPEN;
    		this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
@@ -104,9 +104,9 @@ class HttpWindowCovering {
 		var informationService = new Service.AccessoryInformation();
 
 		informationService
-			.setCharacteristic(Characteristic.Manufacturer, "Jeffrey Lanters")
-			.setCharacteristic(Characteristic.Model, "HTTP Window Covering")
-			.setCharacteristic(Characteristic.SerialNumber, "HWC01");
+			.setCharacteristic(Characteristic.Manufacturer, "Peter Chodyra")
+			.setCharacteristic(Characteristic.Model, "HTTP Window Blinds")
+			.setCharacteristic(Characteristic.SerialNumber, "HWB02");
 
 		this.service
 			.getCharacteristic(Characteristic.Name)
