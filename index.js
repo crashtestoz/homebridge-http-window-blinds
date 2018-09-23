@@ -39,9 +39,14 @@ class HttpWindowCovering {
 		callback(null);
 	}
 	getCurrentPosition(callback) {
+		var ops = {
+         		uri:    this.urlGetCurrentPosition,
+         		method: "GET",
+         		timeout: this.timeout
+      		};
 		this.log("getCurrentPosition:", this.currentPosition);
 		//GetCode here
-		request(this.urlGetCurrentPosition, (error, response, body) => {
+		request(ops, (error, response, body) => {
 			var value = null;
          		if (error) {
             			this.log('HTTP bad response (' + ops.uri + '): ' + error.message);
