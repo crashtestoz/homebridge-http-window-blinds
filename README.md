@@ -11,7 +11,7 @@ A simple [Homebridge](https://github.com/nfarina/homebridge) plugin for controll
 ## Installation
 
 - Install homebridge: `sudo npm install -g homebridge`
-- Install this plugin: `sudo npm install -g homebridge-http-window-covering`
+- Install this plugin: `sudo npm install -g homebridge-http-window-blinds`
 - Update your configuration file. See config sample below.
 
 ## Config sample
