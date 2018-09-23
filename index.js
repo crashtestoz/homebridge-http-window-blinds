@@ -65,7 +65,7 @@ class HttpWindowCovering {
             			}
          		}
 			this.currentPosition = value;
-			callback(error, this.currentPosition);
+			callback(null);
 		});	
 	}
 	getName(callback) {
