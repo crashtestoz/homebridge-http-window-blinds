@@ -25,6 +25,7 @@ class HttpWindowCovering {
 		this.manufacturer = "@crashtestoz";
 		this.outputValueMultiplier = config.outputValueMultiplier || 1;
 		this.urlSetTargetPosition = config.urlSetTargetPosition;
+		this.urlGetCurrentPosition = config.urlGetCurrentPosition;
 		this.serial = config["serial"] || "20180923";
    		this.timeout = config["timeout"] || DEF_TIMEOUT;
    		this.minOpen = config["min_open"] || DEF_MIN_OPEN;
