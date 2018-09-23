@@ -17,8 +17,9 @@ module.exports = homebridge => {
 };
 
 function HttpWindowBlinds(log, config) {
+	this.service = new Service.HttpWindowBlinds(this.name);
     	this.log = log;
-	this.name = config["name"] || "Window Covering";
+	this.name = config.name || "Window Blinds";
 	this.model = config["model"] || "nodeMCU based DIY motorised blinds";
 	this.manufacturer = "@crashtestoz";
 	this.outputValueMultiplier = config.outputValueMultiplier || 1;
