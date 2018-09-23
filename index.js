@@ -16,37 +16,41 @@ module.exports = homebridge => {
 		HttpWindowCovering);
 };
 
-class HttpWindowCovering {
-	constructor(log, config) {
-		this.service = new Service.WindowCovering(this.name);
-		this.log = log;
-		this.name = config.name || "Window Covering";
-		this.model = config["model"] || "nodeMCU based DIY motorised blinds";
-		this.manufacturer = "@crashtestoz";
-		this.outputValueMultiplier = config.outputValueMultiplier || 1;
-		this.urlSetTargetPosition = config.urlSetTargetPosition;
-		this.urlGetCurrentPosition = config.urlGetCurrentPosition;
-		this.serial = config["serial"] || "HWB02";
-   		this.timeout = config["timeout"] || DEF_TIMEOUT;
-   		this.minOpen = config["min_open"] || DEF_MIN_OPEN;
-   		this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
-		this.currentPosition = 100;
-		this.targetPosition = 100;
+function HttpWindowBlinds(log, config) {
+    	this.log = log;
+	this.name = config.name || "Window Covering";
+	this.model = config["model"] || "nodeMCU based DIY motorised blinds";
+	this.manufacturer = "@crashtestoz";
+	this.outputValueMultiplier = config.outputValueMultiplier || 1;
+	this.urlSetTargetPosition = config.urlSetTargetPosition;
+	this.urlGetCurrentPosition = config.urlGetCurrentPosition;
+	this.serial = config["serial"] || "HWB02";
+   	this.timeout = config["timeout"] || DEF_TIMEOUT;
+   	this.minOpen = config["min_open"] || DEF_MIN_OPEN;
+   	this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
+	this.currentPosition = 100;
+	this.targetPosition = 100;
+	this.positionState = Characteristic.PositionState.STOPPED;
+	
+}	
 
-		this.positionState = Characteristic.PositionState.STOPPED;
-		this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
-	}
-	identify(callback) {
+HttpWindowBlinds.prototype = {
+	identify: function(callback) {
 		this.log("Identify requested!");
 		callback(null);
-	}
-	getCurrentPosition(callback) {
+	},
+	
+	getName: function(callback) {
+		this.log("getName :", this.name);
+		callback(null, this.name);
+	},
+
+	getCurrentPosition: function(callback) {
 		var ops = {
          		uri:    this.urlGetCurrentPosition,
          		method: "GET",
          		timeout: this.timeout
       		};
-		this.log("getCurrentPosition:", this.currentPosition);
 		//GetCode here
 		request(ops, (error, response, body) => {
 			var value = null;
@@ -56,30 +60,25 @@ class HttpWindowCovering {
             			try {
                				value = JSON.parse(body).position;
                				if (value < this.minOpen || value > this.maxOpen || isNaN(value)) {
-                  				throw "Invalid value received";
+						throw "Invalid value received";
                				}
                				this.log('HTTP successful response: ' + body);
+					this.currentPosition = value;
+					this.service.setCharacteristic(Characteristic.CurrentPosition, this.currentPosition);
+					callback(null, this.currentPosition);
             			} catch (parseErr) {
                				this.log('Error processing received information: ' + parseErr.message);
                				error = parseErr;
+					callback(error, this.currentPosition);
             			}
          		}
-			this.currentPosition = value;
-			this.log("getCurrentPosition is now: %s",this.currentPosition);
-			//this.service.setCharacteristic(Characteristic.CurrentPosition, this.currentPosition);
-			//this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
-			callback(null);
 		});	
-	}
-	getName(callback) {
-		this.log("getName :", this.name);
-		callback(null, this.name);
-	}
-	getTargetPosition(callback) {
+	},
+	getTargetPosition: functions(callback) {
 		this.log("getTargetPosition :", this.targetPosition);
 		callback(null, this.targetPosition);
-	}
-	setTargetPosition(value, callback) {
+	},
+	setTargetPosition: function(value, callback) {
 		this.log("setTargetPosition from %s to %s", this.targetPosition, value);
 		this.targetPosition = value;
 
@@ -98,12 +97,12 @@ class HttpWindowCovering {
 			this.log("currentPosition is now %s", this.currentPosition);
 			callback(null);
 		});
-	}
-	getPositionState(callback) {
+	},
+	getPositionState: function(callback) {
 		this.log("getPositionState :", this.positionState);
 		callback(null, this.positionState);
-	}
-	getServices() {
+	},
+	getServices: function() {
 		var informationService = new Service.AccessoryInformation();
 
 		informationService
@@ -131,3 +130,4 @@ class HttpWindowCovering {
 		return [informationService, this.service];
 	}
 }
+
