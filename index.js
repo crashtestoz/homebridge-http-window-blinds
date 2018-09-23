@@ -21,9 +21,13 @@ class HttpWindowCovering {
 		this.service = new Service.WindowCovering(this.name);
 		this.log = log;
 		this.name = config.name || "Window Covering";
+		this.model = config["model"] || "nodeMCU multi sensor DIY";
 		this.outputValueMultiplier = config.outputValueMultiplier || 1;
 		this.urlSetTargetPosition = config.urlSetTargetPosition;
-
+		this.serial = config["serial"] || "20180923";
+   		this.timeout = config["timeout"] || DEF_TIMEOUT;
+   		this.minOpen = config["min_open"] || DEF_MIN_OPEN;
+   		this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
 		this.currentPosition = 100;
 		this.targetPosition = 100;
 
@@ -36,7 +40,26 @@ class HttpWindowCovering {
 	}
 	getCurrentPosition(callback) {
 		this.log("getCurrentPosition:", this.currentPosition);
-		callback(null, this.currentPosition);
+		//GetCode here
+		request(this.urlGetCurrentPosition, (error, response, body) => {
+			var value = null;
+         		if (error) {
+            			this.log('HTTP bad response (' + ops.uri + '): ' + error.message);
+         		} else {
+            			try {
+               				value = JSON.parse(body).position;
+               				if (value < this.minOpen || value > this.maxOpen || isNaN(value)) {
+                  				throw "Invalid value received";
+               				}
+               				this.log('HTTP successful response: ' + body);
+            			} catch (parseErr) {
+               				this.log('Error processing received information: ' + parseErr.message);
+               				error = parseErr;
+            			}
+         		}
+			this.currentPosition = value;
+		});
+		callback(error, this.currentPosition);
 	}
 	getName(callback) {
 		this.log("getName :", this.name);
