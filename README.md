@@ -25,6 +25,7 @@ A simple [Homebridge](https://github.com/nfarina/homebridge) plugin for controll
             "accessory": "HttpWindowCovering",
             "name": "Office Blinds",
             "urlSetTargetPosition": "http://192.168.1.100/blinds?open=%VALUE%",
+            "urlGetCurrentPosition": "http://192.168.1.100/status",
 
             // Optional
             "outputValueMultiplier": 0.8
@@ -37,3 +38,5 @@ A simple [Homebridge](https://github.com/nfarina/homebridge) plugin for controll
 ## Under the hood
 
 When setting the target position the url from the config will be used. %VALUE% will be replaced will the value passed by your Homekit app. This will be a value between 0 and 100 depending on the status of your window covering. Once the HTTP request was done, the current position will be updated so the Homekit app will complete and can take another request. There is no time-out for this request.
+
+The responce from urlGetCurrentPosition should be json e.g. {"position":"20"} where 20 is 20% open.
