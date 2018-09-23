@@ -24,7 +24,7 @@ This plugin handles opening and closing blinds from 0% to 100%. It also updates 
     "accessories": [
         {
             // Required
-            "accessory": "HttpWindowCovering",
+            "accessory": "HttpWindowBlinds",
             "name": "Office Blinds",
             "urlSetTargetPosition": "http://192.168.1.100/blinds?open=%VALUE%",
             "urlGetCurrentPosition": "http://192.168.1.100/status",
