@@ -1,0 +1,36 @@
+{
+    "name": "homebridge-http-window-covering",
+    "version": "1.0.3",
+    "description": "Homebridge Plugin for controlling window covering over HTTP",
+    "main": "index.js",
+    "engines": {
+        "homebridge": ">=0.3.2"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jeffreylanters/homebridge-http-window-covering.git"
+    },
+    "keywords": [
+        "homebridge",
+        "homebridge-plugin",
+        "blinder",
+        "shutter",
+        "blinds",
+        "HAP",
+        "window",
+        "covering",
+        "homekit"
+    ],
+    "author": "Jeffrey Lanters",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jeffreylanters/homebridge-http-window-covering/issues"
+    },
+    "homepage": "https://github.com/jeffreylanters/homebridge-http-window-covering#readme",
+    "dependencies": {
+        "request": "^2.81.0"
+    }
+}
