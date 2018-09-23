@@ -1,6 +1,6 @@
 {
     "name": "homebridge-http-window-blinds",
-    "version": "2.2.0",
+    "version": "2.4.0",
     "description": "Homebridge Plugin for controlling window blinds over HTTP",
     "main": "index.js",
     "engines": {
