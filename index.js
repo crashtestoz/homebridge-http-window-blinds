@@ -18,7 +18,7 @@ module.exports = homebridge => {
 
 function HttpWindowBlinds(log, config) {
     	this.log = log;
-	this.name = config.name || "Window Covering";
+	this.name = config["name"] || "Window Covering";
 	this.model = config["model"] || "nodeMCU based DIY motorised blinds";
 	this.manufacturer = "@crashtestoz";
 	this.outputValueMultiplier = config.outputValueMultiplier || 1;
