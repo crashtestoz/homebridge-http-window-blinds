@@ -3,7 +3,7 @@
 This is based on an Archived module by @jeffreylanters
 A simple [Homebridge](https://github.com/nfarina/homebridge) plugin for controlling window blinds over HTTP. This required a DIY device to move the windows blinds cord.
 
-This plugin handles opening and closing blinds from 0% to 100%. It also updates the current position of the blinds if they moved outside HomeKit.
+This plugin handles opening and closing blinds from 0% to 100%. It also updates the current position of the blinds if they moved outside HomeKit with other means e.g manual url request.
 
 ## IMPORTANT
 
