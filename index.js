@@ -29,9 +29,12 @@ function HttpWindowBlinds(log, config) {
    	this.timeout = config["timeout"] || DEF_TIMEOUT;
    	this.minOpen = config["min_open"] || DEF_MIN_OPEN;
    	this.maxOpen = config["max_open"] || DEF_MAX_OPEN;
+	
 	this.currentPosition = 100;
 	this.targetPosition = 100;
-	this.positionState = Characteristic.PositionState.STOPPED;	
+	
+	this.positionState = Characteristic.PositionState.STOPPED;
+	this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
 }	
 
 HttpWindowBlinds.prototype = {
@@ -65,13 +68,15 @@ HttpWindowBlinds.prototype = {
                				this.log('HTTP successful response: ' + body);
 					this.currentPosition = value;
 					this.service.setCharacteristic(Characteristic.CurrentPosition, this.currentPosition);
-					callback(null, this.currentPosition);
+					this.service.setCharacteristic(Characteristic.PositionState, Characteristic.PositionState.STOPPED);
+					
             			} catch (parseErr) {
                				this.log('Error processing received information: ' + parseErr.message);
                				error = parseErr;
-					callback(error, this.currentPosition);
+					
             			}
          		}
+			callback(error, this.currentPosition);
 		});	
 	},
 	getTargetPosition: function(callback){
