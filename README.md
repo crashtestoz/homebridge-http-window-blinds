@@ -26,8 +26,8 @@ This plugin handles opening and closing blinds from 0% to 100%. It also updates 
             // Required
             "accessory": "HttpWindowBlinds",
             "name": "Office Blinds",
-            "urlSetTargetPosition": "http://192.168.1.100/blinds?open=%VALUE%",
-            "urlGetCurrentPosition": "http://192.168.1.100/status",
+            "urlSetTargetPosition": "http://192.168.1.100/api/blinds?open=%VALUE%",
+            "urlGetCurrentPosition": "http://192.168.1.100/api/status",
 
             // Optional
             "outputValueMultiplier": 0.8
