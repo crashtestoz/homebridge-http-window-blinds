@@ -42,11 +42,6 @@ HttpWindowBlinds.prototype = {
 		this.log("Identify requested!");
 		callback(null);
 	},
-	
-	getName: function(callback) {
-		this.log("getName :", this.name);
-		callback(null, this.name);
-	},
 
 	getCurrentPosition: function(callback) {
 		var ops = {
@@ -115,10 +110,6 @@ HttpWindowBlinds.prototype = {
 			.setCharacteristic(Characteristic.Manufacturer, "Peter Chodyra")
 			.setCharacteristic(Characteristic.Model, "HTTP Window Blinds")
 			.setCharacteristic(Characteristic.SerialNumber, "HWB02");
-
-		this.service
-			.getCharacteristic(Characteristic.Name)
-			.on('get', this.getName.bind(this));
 
 		this.service
 			.getCharacteristic(Characteristic.CurrentPosition)
